@@ -7,16 +7,17 @@ if (!drcUtils){
     this.functionToTime = functionToTime;
     this.run = function (){
       //Use the Date object to record times
-      this.startTime = new Date();
+      this.startTime = new Date().getTime();
       this.endTime = (function(){
         functionToTime();
-        return new Date();
+        return new Date().getTime();
       })();
+      this.runtime = this.endTime - this.startTime;
       console.log('Function took '+this.runTime+' milliseconds to run');
     };
     this.startTime = 0;
     this.endTime = 0;
-    this.runTime = this.endTime - this.startTime;
+    this.runTime = 0;
 }
 }
 else alert('global object required to run is already being used');
