@@ -5,7 +5,9 @@ if (!drcUtils){
   //Utility for timing function execution
   drcUtils.FunctionTimer = function(functionToTime) {
     this.functionToTime = functionToTime;
-    this.runTime = 0;
+    this.startTime = 0;
+    this.endTime = 0;
+    this.runTime = function (){return this.endTime - this.startTime;};
     this.run = function (){
       //Use the Date object to record times
       this.startTime = new Date().getTime();
@@ -15,9 +17,7 @@ if (!drcUtils){
       })();
       return this.endTime - this.startTime;
     };
-    this.startTime = 0;
-    this.endTime = 0;
-}
+  }
 }
 else alert('global object required to run is already being used');
 
